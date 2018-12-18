@@ -9,7 +9,8 @@ class FetchJsonp extends Component{
         //react定义数据
         this.state={
             msg:'我是FetchJsonp',
-            list:[]
+            list:[],
+            list2:[]
         }
     }
 
@@ -21,7 +22,9 @@ class FetchJsonp extends Component{
                 return response.json()
             }).then((json)=> {
                 console.log('parsed json', json);
-
+                this.setState({
+                    list2:json.result
+                });
             }).catch((ex)=> {
                 console.log('parsing failed', ex);
             })
@@ -41,6 +44,14 @@ class FetchJsonp extends Component{
                             return(
                                 <li key={key}>{value.title}</li>
                             )
+                        })
+                    }
+                </ul>
+                <br/>
+                <ul>
+                    {
+                        this.state.list2.map((value,key)=>{
+                            return <li key={key}>{value.title}</li>
                         })
                     }
                 </ul>
