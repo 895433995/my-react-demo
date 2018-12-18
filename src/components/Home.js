@@ -19,7 +19,8 @@ class Home extends Component{
             style:{
                 color:'blue',
                 fontSize:'14px'
-            }
+            },
+            inputValue:''
         }
     }
 
@@ -30,14 +31,19 @@ class Home extends Component{
 
     getData=()=>{
         alert(this.state.title);
-    }
+    };
 
     getResult=(result)=>{
         alert(result);
         this.setState({
-            msg:result
+            msg:result,
         })
-    }
+    };
+    inputChange=()=>{
+        this.setState({
+            inputValue:this.refs.name.value
+        })
+    };
 
     //render 模板
     render(){
@@ -50,11 +56,11 @@ class Home extends Component{
 
                 <div title={this.state.title}>我是一个title</div>
 
-                <div className={this.state.color}>qqqq</div>
+                <div className={this.state.color}>{this.state.inputValue}</div>
 
                 <label htmlFor="name" style={this.state.style}>姓名</label>
 
-                <input type="text" id="name"/>
+                <input type="text" ref="name" id="name" placeholder="小明" value={this.state.inputValue} onChange={this.inputChange}/>
 
                 <br/>
 
